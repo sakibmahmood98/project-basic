@@ -1,0 +1,73 @@
+
+
+   <!-- 7.template Template-driven Forms -->
+
+
+<form #maForm="ngForm" (ngSubmit)="submit(maForm)">
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+      <div *ngIf="!contact.valid">Every Validation Error...</div>
+      <div class="form-group">
+        
+        <label for="firstName">First Name</label>
+        <input 
+          required 
+          minlength="3" 
+          maxlength="10" 
+          pattern="banana" 
+          ngModel name="firstName" 
+          #firstName="ngModel" 
+          id="firstName" 
+          type ="text" 
+          class="form-control">
+      
+  
+        <div 
+          class="alert alert-danger" 
+          *ngIf="!firstName.valid && firstName.touched">
+          <div *ngIf="firstName.errors?.required">
+            First Name is Required!
+          </div>
+          <div *ngIf="firstName.errors?.minlength">
+            Min Length > {{firstName.errors?.minlength.requiredLength}}
+          </div>
+          <div *ngIf="firstName.errors?.pattern"> 
+            Must Follow the Required Pattern!
+          </div>
+        </div>
+      </div>
+  </div>
+  
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"> </textarea>
+    </div>
+    
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ngModel name="isSubscribed"> Subscribe to Mailing List
+      </label>
+    </div>
+  
+    <div class="form-group">
+      <label for="contactMethod"> Contact Method: </label>
+      <select multiple ngModel name="contactMethod" id="contactMethod" class="form-control">
+        <option value=""></option> 
+        <option *ngFor="let method of contactMethods" [value]="method.id">{{method.name}}</option>
+      </select>
+    </div>
+  
+    <div *ngFor="let method of contactMethods" class="radio">
+        <label>
+          <input ngModel type="radio" name="contactMethodRadio" [value]="method.id">
+          {{method.name}}
+        </label>
+      </div>
+    
+  
+    <P>{{maForm.value | json}}</P>
+    <button class="btn btn-primary" [disabled]="!maForm.valid">Submit</button>
+  </form>
+  
+  
+
+
