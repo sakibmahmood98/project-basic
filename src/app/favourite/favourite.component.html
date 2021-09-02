@@ -1,0 +1,31 @@
+
+ <!-- 
+
+<p>Envelope icon: <span
+class="glyphicon"
+[class.glyphicon-asterisk]="isFavourite"
+[class.glyphicon-asterisk.empty]="!isFavourite"
+(click)="onClick()"
+></span> 
+
+-->
+
+ <!--  <button class="btn btn-primary" [class.active]="isActive">Save</button> -->
+
+
+<style>
+    .btn-primary{
+        color: rgb(255, 43, 191);
+    }
+</style>
+
+
+<button
+class="btn" 
+[ngClass]="{
+    'btn-primary' : isSelected,
+    'btn-secondary' : !isSelected
+}"
+
+(click)="onClick()"
+>Save</button> 

@@ -1,0 +1,24 @@
+
+    <!-- <template> -->
+
+        <button
+        [ngStyle]="{
+        'backgroundColor': canSave? 'blue' : 'gray',
+        'color': canSave? 'white' : 'black',
+        'fontWeight' : canSave? 'bold' : 'normal'
+        }"
+        (click)="onAdd()">Add</button>
+
+        
+    <ul>
+        <div *ngFor="let subject of subjects; index as i">
+           
+            <li>{{i}} - {{subject.name}} 
+                <button (click)="onRemove(subject)">Remove</button>
+            </li>
+        </div>
+    </ul>
+
+
+
+       
