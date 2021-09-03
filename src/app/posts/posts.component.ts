@@ -30,4 +30,14 @@ export class PostsComponent  {
     
     });
    }
+
+   updatePost(post: any) {
+     this.http.patch(this.url + '/' +post.id, JSON.stringify({isRead:true}))
+     //this.http.put(this.url, JSON.stringify(post));
+     .subscribe(response => {
+       console.log(response);
+     })
+   }
+
+
 }
