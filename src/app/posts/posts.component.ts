@@ -18,7 +18,9 @@ export class PostsComponent implements OnInit {
     this.service.getPosts()
     .subscribe(response => {
       this.posts = response as any;
-     
+    }, error => {
+      alert('An unexpected error occured.');
+      console.log(error);
     });
 
    }
