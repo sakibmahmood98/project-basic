@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseComponent } from './course/course.component';
@@ -16,6 +16,10 @@ import { LikeComponent } from './like/like.component';
 import { InputFormateDirective } from './input-formate.directive';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+import { NewCourseFormFormArrayComponent } from './new-course-form-form-array/new-course-form-form-array.component';
+import { NewCourseFormbuilderComponent } from './new-course-formbuilder/new-course-formbuilder.component';
+import { PasswordResetFormComponent } from './password-reset-form/password-reset-form.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +33,19 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     LikeComponent,
     InputFormateDirective,
     NewCourseFormComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    SignupFormComponent,
+    NewCourseFormFormArrayComponent,
+    NewCourseFormbuilderComponent,
+    PasswordResetFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
     EmailService,
     AuthorsService,
