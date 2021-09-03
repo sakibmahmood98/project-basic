@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable  } from 'rxjs';
 import { AppError } from '../common/validators/app-error';
 import { NotFoundError } from '../common/validators/not-found-error';
+import { BadInput } from '../common/validators/bad-input';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class PostService {
     return this.http.post(this.url,JSON.stringify(post))
     .pipe(catchError((error: Response) => {
       if(error.status === 404 )
-          return Observable.throw(new NotFoundError(error));
+          return Observable.throw(new BadInput(error));
         return Observable.throw(new AppError(error));
     
     }));

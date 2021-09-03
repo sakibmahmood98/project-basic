@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { AppError } from '../common/validators/app-error';
+import { BadInput } from '../common/validators/bad-input';
 import { NotFoundError } from '../common/validators/not-found-error';
 import { PostService } from '../services/post.service';
 
@@ -46,8 +47,8 @@ export class PostsComponent implements OnInit {
     
     },
     (error: AppError) => {
-      if(error instanceof NotFoundError ){ 
-        //alert('--');
+      if(error instanceof BadInput ){ 
+        //this.form.setErrors(error.originalError);
       }
         else {
           alert('An unexpected error occured.');
