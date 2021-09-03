@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { AppError } from '../common/validators/app-error';
+import { NotFoundError } from '../common/validators/not-found-error';
 import { PostService } from '../services/post.service';
+
 
 @Component({
   selector: 'posts',
@@ -19,8 +22,8 @@ export class PostsComponent implements OnInit {
     .subscribe(response => {
       this.posts = response as any;
     }, 
-    (error: Response) => {
-      if(error.status === 404 ){ 
+    (error: AppError) => {
+      if(error instanceof NotFoundError ){ 
         //alert('--');
       }
         else {
@@ -42,8 +45,8 @@ export class PostsComponent implements OnInit {
       this.posts.splice(0,0,post);
     
     },
-    (error: Response) => {
-      if(error.status === 404 ){ 
+    (error: AppError) => {
+      if(error instanceof NotFoundError ){ 
         //alert('--');
       }
         else {
@@ -58,8 +61,8 @@ export class PostsComponent implements OnInit {
      .subscribe(response => {
        console.log(response);
      },
-     (error: Response) => {
-      if(error.status === 404 ){ 
+     (error: AppError) => {
+      if(error instanceof NotFoundError ){ 
         //alert('--');
       }
         else {
@@ -76,8 +79,8 @@ export class PostsComponent implements OnInit {
       let index = this.posts.indexOf(post);
       this.posts.splice(index,1 );
     },
-    (error: Response) => {
-      if(error.status === 404 ){ 
+    (error: AppError) => {
+      if(error instanceof NotFoundError ){ 
         //alert('--');
         alert('This post has already been deleted.');
       }
