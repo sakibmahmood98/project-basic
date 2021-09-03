@@ -18,3 +18,4 @@ export class NewCourseFormComponent
     console.log("Submitting: " , course);
   }
 }
+
