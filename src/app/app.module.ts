@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseComponent } from './course/course.component';
 import { AuthorsComponent } from './authors/authors.component';
-import { AuthorsService } from './authors.service';
-import { EmailService } from './email.service';
-import { CoursesService } from './courses.service';
+import { AuthorsService } from './services/authors.service';
+import { EmailService } from './services/email.service';
+import { CoursesService } from './services/courses.service';
 import { SummaryPipe } from './summary.pipe';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { TitleCasePipe } from './title-case.pipe';
@@ -22,6 +22,7 @@ import { NewCourseFormFormArrayComponent } from './new-course-form-form-array/ne
 import { NewCourseFormbuilderComponent } from './new-course-formbuilder/new-course-formbuilder.component';
 import { PasswordResetFormComponent } from './password-reset-form/password-reset-form.component';
 import { PostsComponent } from './posts/posts.component';
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PostsComponent } from './posts/posts.component';
   providers: [
     EmailService,
     AuthorsService,
-    CoursesService
+    CoursesService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

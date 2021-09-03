@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthorsService } from '../authors.service';
+import { AuthorsService } from '../services/authors.service';
 import { UsernameValidators } from './username.validators';
 
 @Component({
