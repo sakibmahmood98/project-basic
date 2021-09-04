@@ -19,42 +19,29 @@ export class PostService {
 
   getPosts() {
     return this.http.get(this.url)
-    .pipe(catchError((error: Response) => {
-      if(error.status === 404 )
-          return Observable.throw(new NotFoundError());
-        return Observable.throw(new AppError(error));
-    
-    }));
+    .pipe(catchError(this.handleError));
   }
 
   createPost(post: any) {
     return this.http.post(this.url,JSON.stringify(post))
-    .pipe(catchError((error: Response) => {
-      if(error.status === 400 )
-          return Observable.throw(new BadInput());
-        return Observable.throw(new AppError(error));
-    
-    }));
+    .pipe(catchError(this.handleError));
   }
 
   updatePost(post: any) {
     return this.http.patch(this.url + '/' +post.id, JSON.stringify({isRead:true}))
-    .pipe(catchError((error: Response) => {
-      if(error.status === 404 )
-          return Observable.throw(new NotFoundError());
-        return Observable.throw(new AppError(error));
-    
-    }));
+    .pipe(catchError(this.handleError));
   }
 
   deletePost(id: any) {
-    return this.http.delete(this.url + '/' +id)
-    .pipe(catchError((error: Response) => {
-      if(error.status === 404 )
-          return Observable.throw(new NotFoundError());
-        return Observable.throw(new AppError(error));
-    
-    }));
+    return this.http.delete(this.url + '/' +id).pipe(catchError(this.handleError));
+    //.pipe(catchError(this.handleError()));
   }
 
+  private handleError(error: Response) {
+    if(error.status === 404 )
+      return Observable.throw(new NotFoundError());
+
+  return Observable.throw(new AppError(error));
+
+}
 }
