@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Observable  } from 'rxjs';
-import 'rxjs/add/observable/throw'
 import { NotFoundError } from './not-found-error';
 import { AppError } from './app-error';
+import 'rxjs/add/observable/throw';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,9 @@ export class DataService {
   }
 
   create(resource: any) {
-    return this.http.post(this.url,JSON.stringify(resource))
-    .pipe(catchError(this.handleError));
+      return Observable.throwError(new AppError());
+    // return this.http.post(this.url,JSON.stringify(resource))
+    // .pipe(catchError(this.handleError));
   }
 
   update(resource: any) {
@@ -32,7 +33,8 @@ export class DataService {
   }
 
   delete(id: any) {
-    return this.http.delete(this.url + '/' +id).pipe(catchError(this.handleError));
+      return Observable.throwError(new AppError());
+    //return this.http.delete(this.url + '/' +id).pipe(catchError(this.handleError));
     //.pipe(catchError(this.handleError()));
   }
 

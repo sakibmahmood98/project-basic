@@ -20,8 +20,8 @@ export class PostsComponent implements OnInit {
 
    ngOnInit() {
     this.service.getAll()
-    .subscribe(response => {
-      this.posts = response as any;
+    .subscribe(posts => {
+      this.posts = posts as any;
     }, 
     (error: AppError) => {
       if(error instanceof NotFoundError ){ 
@@ -33,13 +33,14 @@ export class PostsComponent implements OnInit {
 
    createPost(input: HTMLInputElement) {
      let post :any = {title: input.value };
+     this.posts.splice(0,0,post);
+
      input.value = '';
 
 
     this.service.create(post)
-    .subscribe(response => {
-      post.id = response;
-      this.posts.splice(0,0,post);
+    .subscribe(createdPost => {
+      post.id = createdPost;
     
     },
     (error: AppError) => {
@@ -52,8 +53,8 @@ export class PostsComponent implements OnInit {
 
    updatePost(post: any) {
      this.service.update(post)
-     .subscribe(response => {
-       console.log(response);
+     .subscribe(updatedPost => {
+       console.log(updatedPost);
      },
      (error: AppError) => {
       if(error instanceof NotFoundError ){ 
@@ -66,10 +67,8 @@ export class PostsComponent implements OnInit {
    deletePost(post: any) {
      this.service.delete(post.id)
     //this.http.put(this.url, JSON.stringify(post));
-    .subscribe(response => {
-      let index = this.posts.indexOf(post);
-      this.posts.splice(index,1);
-    },
+    .subscribe(
+      null,
     (error: AppError) => {
       if(error instanceof NotFoundError ){ 
         //alert('--');
