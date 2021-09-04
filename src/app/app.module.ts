@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule  } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { NewCourseFormbuilderComponent } from './new-course-formbuilder/new-cour
 import { PasswordResetFormComponent } from './password-reset-form/password-reset-form.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostService } from './services/post.service';
+import { AppErrorHandler } from './common/validators/app-error-handler';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { PostService } from './services/post.service';
     EmailService,
     AuthorsService,
     CoursesService,
-    PostService
+    PostService,
+    { provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

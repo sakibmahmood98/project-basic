@@ -27,12 +27,8 @@ export class PostsComponent implements OnInit {
       if(error instanceof NotFoundError ){ 
         //alert('--');
       }
-        else {
-          alert('An unexpected error occured.');
-          console.log(error);
-        }
+        else throw error;
     });
-
    }
 
    createPost(input: HTMLInputElement) {
@@ -50,10 +46,7 @@ export class PostsComponent implements OnInit {
       if(error instanceof BadInput ){ 
         //this.form.setErrors(error.originalError);
       }
-        else {
-          alert('An unexpected error occured.');
-          console.log(error);
-        }
+        else throw error;
     });
    }
 
@@ -66,10 +59,7 @@ export class PostsComponent implements OnInit {
       if(error instanceof NotFoundError ){ 
         //alert('--');
       }
-        else {
-          alert('An unexpected error occured.');
-          console.log(error);
-        }
+      else throw error;
     });
    }
 
@@ -78,17 +68,14 @@ export class PostsComponent implements OnInit {
     //this.http.put(this.url, JSON.stringify(post));
     .subscribe(response => {
       let index = this.posts.indexOf(post);
-      this.posts.splice(index,1 );
+      this.posts.splice(index,1);
     },
     (error: AppError) => {
       if(error instanceof NotFoundError ){ 
         //alert('--');
         alert('This post has already been deleted.');
       }
-        else {
-          alert('An unexpected error occured.');
-          console.log(error);
-        }
+      else throw error;
     });
   }
 }

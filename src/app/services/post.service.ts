@@ -6,6 +6,7 @@ import { Observable  } from 'rxjs';
 import { AppError } from '../common/validators/app-error';
 import { NotFoundError } from '../common/validators/not-found-error';
 import { BadInput } from '../common/validators/bad-input';
+import 'rxjs/add/observable/throw'
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class PostService {
     return this.http.get(this.url)
     .pipe(catchError((error: Response) => {
       if(error.status === 404 )
-          return Observable.throw(new NotFoundError(error));
+          return Observable.throw(new NotFoundError());
         return Observable.throw(new AppError(error));
     
     }));
@@ -29,8 +30,8 @@ export class PostService {
   createPost(post: any) {
     return this.http.post(this.url,JSON.stringify(post))
     .pipe(catchError((error: Response) => {
-      if(error.status === 404 )
-          return Observable.throw(new BadInput(error));
+      if(error.status === 400 )
+          return Observable.throw(new BadInput());
         return Observable.throw(new AppError(error));
     
     }));
@@ -40,18 +41,17 @@ export class PostService {
     return this.http.patch(this.url + '/' +post.id, JSON.stringify({isRead:true}))
     .pipe(catchError((error: Response) => {
       if(error.status === 404 )
-          return Observable.throw(new NotFoundError(error));
+          return Observable.throw(new NotFoundError());
         return Observable.throw(new AppError(error));
     
     }));
-
   }
 
   deletePost(id: any) {
     return this.http.delete(this.url + '/' +id)
     .pipe(catchError((error: Response) => {
       if(error.status === 404 )
-          return Observable.throw(new NotFoundError(error));
+          return Observable.throw(new NotFoundError());
         return Observable.throw(new AppError(error));
     
     }));
