@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
@@ -7,8 +7,8 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
         
 let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1vc2ggSGFtZWRhbmkiLCJhZG1pbiI6dHJ1ZX0.iy8az1ZDe-_hS8GLDKsQKgPHvWpHl0zkQBqy1QIPOkA';
 
+let users: any[] = [{ id: 1, email: 'test@gmail.com', password: 'test', firstName: 'Test', lastName: 'User' }];
 
-const users: any = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -21,10 +21,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             .pipe(materialize()) 
             .pipe(delay(500))
             .pipe(dematerialize());
+            
 
         function handleRoute() {
             switch (true) {
-                case url.endsWith('/users/authenticate') && method === 'POST':
+                case url.endsWith('/api/authenticate') && method === 'POST':
                     return authenticate();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
@@ -35,15 +36,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return next.handle(request);
             }    
         }
-
-    
-
+        
         function authenticate() {
-            const { username, password } = body;
-            const user = users.find((x: { username: any; password: any; }) => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            const { email, password } = body;
+            let user = users.find((x: any)  => x.email === email && x.password === password);
+            console.log(user);
+            if (!user) return error('email or password is incorrect');
             return ok({
-                id: user.id as any ,
+                id: user.id,
+                email: user.email,
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -79,7 +80,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function isLoggedIn() {
-            return headers.get('Authorization') === 'Bearer ' + token;
+            return headers.get('Authorization') === 'Bearer '+ token;
         }
     }
 }
