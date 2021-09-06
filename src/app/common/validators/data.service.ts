@@ -40,9 +40,9 @@ export class DataService {
 
   private handleError(error: Response) {
     if(error.status === 404 )
-      return Observable.throw(new NotFoundError());
+      return Observable.throwError(new NotFoundError());
 
-  return Observable.throw(new AppError(error));
+  return Observable.throwError(new AppError(error));
 
 }
 }
