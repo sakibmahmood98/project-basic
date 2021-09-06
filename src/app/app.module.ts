@@ -66,7 +66,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     RouterModule.forRoot([
 
       { path: ' ', component: HomeComponent},
-      { path: 'profile/":username', component: GithubProfileComponent},
+      { path: 'followers/:username', component: GithubProfileComponent},
       { path: 'followers', component: GithubFollowersComponent },
       { path: 'posts', component: PostsComponent},
       { path: '**', component: NotFoundComponent}
