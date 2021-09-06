@@ -1,3 +1,4 @@
+<!-- 
 <h1>
     <ul>
         <li *ngFor="let archive of archives">
@@ -8,3 +9,17 @@
         </li>
     </ul>
 </h1>
+
+-->
+
+<h1> Home Page </h1>
+
+<p>
+    Welcome [Name]
+</p>
+
+<ul>
+    <li><a routerLink="/admin"> Admin </a></li>
+    <li><a routerLink="/login"> Login </a></li>
+    <li><a (click)="authService.logout()" routerLink=""> Logout </a></li>
+</ul>
