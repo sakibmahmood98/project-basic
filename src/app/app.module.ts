@@ -26,6 +26,12 @@ import { PostService } from './services/post.service';
 import { AppErrorHandler } from './common/validators/app-error-handler';
 import { GithubFollowersComponent } from './github-followers/github-followers.component';
 import { GithubFollowersService } from './services/github-followers.service';
+import { RouterModule } from '@angular/router';
+import { NotFoundError } from './common/validators/not-found-error';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -45,14 +51,27 @@ import { GithubFollowersService } from './services/github-followers.service';
     NewCourseFormbuilderComponent,
     PasswordResetFormComponent,
     PostsComponent,
-    GithubFollowersComponent
+    GithubFollowersComponent,
+    GithubProfileComponent,
+    HomeComponent,
+    NotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+
+      { path: ' ', component: HomeComponent},
+      { path: 'profile/":username', component: GithubProfileComponent},
+      { path: 'followers', component: GithubFollowersComponent },
+      { path: 'posts', component: PostsComponent},
+      { path: '**', component: NotFoundComponent}
+  
+  ])
   ],
   schemas: [ 
     CUSTOM_ELEMENTS_SCHEMA 
