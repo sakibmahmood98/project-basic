@@ -38,6 +38,7 @@ import { AdminComponent } from './admin/admin.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { OrderService } from './services/order.service';
 import { fakeBackendProvider } from './Helper/fake-backend';
+import {JwtModule} from '@auth0/angular-jwt'
 
 @NgModule({
   declarations: [
@@ -85,7 +86,14 @@ import { fakeBackendProvider } from './Helper/fake-backend';
       { path: 'posts', component: PostsComponent},
       { path: '**', component: NotFoundComponent}
   
-  ])
+  ]),
+  JwtModule.forRoot({
+    config: {
+      tokenGetter:() => {
+         return localStorage.getItem('access_token'); 
+      },
+    },
+ })
   ],
   schemas: [ 
     CUSTOM_ELEMENTS_SCHEMA 
