@@ -41,6 +41,7 @@ import { fakeBackendProvider } from './Helper/fake-backend';
 import {JwtModule} from '@auth0/angular-jwt'
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { AuthService } from './services/auth.service';
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent},
-      { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
+      { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       { path: 'login', component: LoginComponent},
       { path: 'no-access', component: NoAccessComponent},
       { path: 'archive/:year/:month', component: ArchiveComponent},
@@ -109,6 +110,7 @@ import { AuthService } from './services/auth.service';
     PostService,
     AuthService,
     AuthGuardService,
+    AdminAuthGuardService,
     GithubFollowersService,
     fakeBackendProvider
   ],
