@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
 import { FavoriteChangedEventArgs } from './favourite/favourite.component';
 
 
@@ -10,16 +11,12 @@ import { FavoriteChangedEventArgs } from './favourite/favourite.component';
 })
 export class AppComponent {
 
+  courses$!: Observable<any[]>;
   courses!: any[];
 
   constructor(db: AngularFireDatabase) {
-    const firestore = 
-    db.list('/courses')
-    .valueChanges().subscribe( courses => {
-      this.courses = courses;
-      console.log(this.courses)
-    });
 
+    this.courses$ = db.list('/courses').valueChanges();
   }
 
 

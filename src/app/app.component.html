@@ -52,6 +52,14 @@
 <posts></posts>
 
 <github-followers></github-followers>
--->
 
 <router-outlet></router-outlet>
+
+<button (click)="ngOnDestroy" > Go Offline</button>
+-->
+<ul>
+    <li *ngFor="let course of courses$ | async">
+        {{course}}
+
+    </li>
+</ul>
