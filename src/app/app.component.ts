@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FavoriteChangedEventArgs } from './favourite/favourite.component';
 
 
@@ -8,6 +9,18 @@ import { FavoriteChangedEventArgs } from './favourite/favourite.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  courses!: any[];
+
+  constructor(db: AngularFireDatabase) {
+    const firestore = 
+    db.list('/courses')
+    .valueChanges().subscribe( courses => {
+      this.courses = courses;
+      console.log(this.courses)
+    });
+
+  }
 
 
 

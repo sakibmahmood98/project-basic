@@ -42,6 +42,9 @@ import {JwtModule} from '@auth0/angular-jwt'
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [
@@ -77,6 +80,7 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireDatabaseModule,
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent},
@@ -90,6 +94,7 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
       { path: '**', component: NotFoundComponent}
   
   ]),
+  AngularFireModule.initializeApp(environment.firebase),
   JwtModule.forRoot({
     config: {
       tokenGetter:() => {
@@ -117,3 +122,5 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
