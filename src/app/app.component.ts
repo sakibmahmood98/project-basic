@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
+import { merge, Observable } from 'rxjs';
+import { map } from 'rxjs-compat/operator/map';
+import { mapTo, tap } from 'rxjs/operators';
 import { FavoriteChangedEventArgs } from './favourite/favourite.component';
 
 
@@ -14,9 +16,16 @@ export class AppComponent {
   courses$!: Observable<any[]>;
   courses!: any[];
 
-  constructor(db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase) {
+    
 
     this.courses$ = db.list('/courses').valueChanges();
+  }
+
+
+  add(course: HTMLInputElement) {
+    this.db.list('/courses').push({Name : 5, Value: course.value});
+    course.value = '';
   }
 
 
