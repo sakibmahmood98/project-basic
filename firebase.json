@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "dist/project-basic",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

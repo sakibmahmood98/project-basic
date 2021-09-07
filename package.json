@@ -22,6 +22,8 @@
     "@auth0/angular-jwt": "^5.0.2",
     "angular2-jwt": "^0.2.3",
     "bootstrap": "^5.1.0",
+    "firebase": "^9.0.1",
+    "firebase-tools": "^9.17.0",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",
     "tslib": "^2.3.0",
@@ -40,5 +42,17 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.3.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakibmahmood98/project-basic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sakibmahmood98/project-basic/issues"
+  },
+  "homepage": "https://github.com/sakibmahmood98/project-basic#readme"
 }
