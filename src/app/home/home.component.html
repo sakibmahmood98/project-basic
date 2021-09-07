@@ -14,8 +14,8 @@
 
 <h1> Home Page </h1>
 
-<p>
-    Welcome [Name]
+<p *ngIf="authService.isLoggedIn()">
+    Welcome {{authService.currentUser.firstName}}
 </p>
 
 <ul>
