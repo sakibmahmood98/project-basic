@@ -71,6 +71,14 @@ export class AppComponent implements OnInit {
 
   }
 
+  colors = [
+    {id: 1, name: 'Red'},
+    {id: 2, name: 'Green'},
+    {id: 3, name: 'Blue'},
+  ]
+
+  color = 2;
+
 
   
   isChecked = true;
