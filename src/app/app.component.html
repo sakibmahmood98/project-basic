@@ -61,6 +61,7 @@
 <ul>
     <li *ngFor="let course of courses$ | async">
         {{course}}
-
+        <button (click)="update(course)">Update</button>
+        <button (click)="delete(course)">delete</button>
     </li>
 </ul>

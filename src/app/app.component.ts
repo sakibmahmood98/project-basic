@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { merge, Observable } from 'rxjs';
 import { map } from 'rxjs-compat/operator/map';
 import { mapTo, tap } from 'rxjs/operators';
 import { FavoriteChangedEventArgs } from './favourite/favourite.component';
+import { CoursesService } from './services/courses.service';
 
 
 @Component({
@@ -11,21 +12,38 @@ import { FavoriteChangedEventArgs } from './favourite/favourite.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   courses$!: Observable<any[]>;
+   //courses$! : AngularFireList<any>
   courses!: any[];
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private courseDb: CoursesService, private db: AngularFireDatabase) {
+
+    //this.courses$  = db.list('/courses');
     
 
-    this.courses$ = db.list('/courses').valueChanges();
+    //this.courses$ = db.list('/courses').valueChanges();
   }
+
+  ngOnInit() {
+    this.courses$ = this.courseDb.get();
+   }
 
 
   add(course: HTMLInputElement) {
-    this.db.list('/courses').push({Name : 5, Value: course.value});
+    this.db.list('/courses').push(course.value);
     course.value = '';
+  }
+
+  update(course: any) {
+    this.db.object('/courses/'+ course)
+    .set(course + ' UPDATED');
+  }
+
+  delete(course: any) {
+    this.db.object('/courses/'+ course)
+    .remove();
   }
 
 
