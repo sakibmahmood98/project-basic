@@ -56,7 +56,7 @@
 <router-outlet></router-outlet>
 
 <button (click)="ngOnDestroy" > Go Offline</button>
--->
+
 <input type="text" (keyup.enter)="add(course)" #course>
 <ul>
     <li *ngFor="let course of courses$ | async">
@@ -65,3 +65,13 @@
         <button (click)="delete(course)">delete</button>
     </li>
 </ul>
+-->
+
+<mat-checkbox
+#subscribe
+[value]=""
+[checked]="isChecked"
+(change)="onChange($event)"
+>Subscribe me</mat-checkbox>
+
+<div *ngIf="subscribe.checked"> Thank you! </div>

@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
   }
 
 
-
   title = 'boo';
   post = {
     title: "Title",
@@ -71,5 +70,18 @@ export class AppComponent implements OnInit {
     console.log("favorite changed",eventArgs );
 
   }
+
+
+  
+  isChecked = true;
+  onChange($event: any) {
+    console.log($event);
+  }
+
+
+
+
+
+
   
 }

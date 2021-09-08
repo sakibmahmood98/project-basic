@@ -38,13 +38,16 @@ import { AdminComponent } from './admin/admin.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { OrderService } from './services/order.service';
 import { fakeBackendProvider } from './Helper/fake-backend';
-import {JwtModule} from '@auth0/angular-jwt'
+import { JwtModule } from '@auth0/angular-jwt'
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -81,6 +84,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireDatabaseModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent},
