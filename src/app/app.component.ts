@@ -86,6 +86,23 @@ export class AppComponent implements OnInit {
     console.log($event);
   }
 
+  categories = [
+    {name: 'Beginner'},
+    {name: 'Intermediate'},
+    {name: 'Advanced'}
+  ]
+
+  selectCategory(category: any){
+    this.categories
+    .filter(c => c!=category)
+    .forEach((c: any) => c.selected = false);
+
+    category.selected =! category.selected;
+
+
+
+  }
+
 
 
 
