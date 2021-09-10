@@ -65,7 +65,7 @@
         <button (click)="delete(course)">delete</button>
     </li>
 </ul>
--->
+
 
 <mat-checkbox
 #subscribe
@@ -164,3 +164,19 @@
     >{{category.name}} </mat-chip>
     
   </mat-chip-list>
+-->
+
+
+  <div class="car">
+    <div style="text-align:center;">
+      <h1>
+        Hi Seaum, welcome here
+      </h1>
+    </div>
+    <nav style="text-align:center;">
+      <button routerLink='/balance' >Check your balance</button>
+      <button routerLink='/deposit' >Deposit some money</button>
+      <button routerLink='/withdraw' >Withdraw some money</button>
+    </nav>
+    <router-outlet></router-outlet>
+    </div>

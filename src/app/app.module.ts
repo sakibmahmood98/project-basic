@@ -47,15 +47,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatRadioModule } from '@angular/material/radio';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatComponentsModule } from './mat-components.module';
+import { ArrayOfComponents, RoutingModule } from './routing/routing.module';
+
 
 
 
@@ -85,7 +79,9 @@ import {MatChipsModule} from '@angular/material/chips';
     ArchiveComponent,
     LoginComponent,
     AdminComponent,
-    NoAccessComponent
+    NoAccessComponent,
+    ArrayOfComponents
+
   ],
   imports: [
     BrowserModule,
@@ -96,16 +92,10 @@ import {MatChipsModule} from '@angular/material/chips';
     AngularFireDatabaseModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatSelectModule,
     FormsModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatButtonModule,
-    MatChipsModule,
+    MatComponentsModule,
+    RoutingModule,
+
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent},
