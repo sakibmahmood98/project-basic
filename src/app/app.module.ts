@@ -49,7 +49,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatComponentsModule } from './mat-components.module';
 import { ArrayOfComponents, RoutingModule } from './routing/routing.module';
-
+import { NgRedux, NgReduxModule} from 'ng2-redux';
+import { IAppState, rootReducer, INITIAL_STATE } from './store';
+import { fromJS,Map } from 'immutable';
 
 
 
@@ -95,6 +97,7 @@ import { ArrayOfComponents, RoutingModule } from './routing/routing.module';
     FormsModule,
     MatComponentsModule,
     RoutingModule,
+    NgReduxModule,
 
     RouterModule.forRoot([
 
@@ -136,6 +139,11 @@ import { ArrayOfComponents, RoutingModule } from './routing/routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<Map<string,any>>)
+  {
+    ngRedux.configureStore(rootReducer as any, fromJS(INITIAL_STATE) as any);
+  }
+ }
 
 
